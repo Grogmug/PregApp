@@ -16,7 +16,7 @@ namespace UITesting
     [Activity(Label = "TaskActivity")]
     public class TaskActivity : Activity
     {
-        List<Task> taskList;
+        GlobalVariables gv;
         ListView taskListView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -29,40 +29,25 @@ namespace UITesting
             ActionBar.SetDisplayHomeAsUpEnabled(true);
             ActionBar.SetHomeButtonEnabled(true);
 
-            //Dummy task items
-            taskList = new List<Task>() {
-                new Task("Gå 2km", "Gå en lille tur for at få noget motion og frisk luft"),
-                new Task("10 squats", "Lav 10 squats, hvor du løfter dit barn op imens."),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text"),
-                new Task("Test", "Test text") };
+            gv = GlobalVariables.Instance;
 
             taskListView = FindViewById<ListView>(Resource.Id.taskListView);
 
-            TasksAdapter adapter = new TasksAdapter(this, taskList);
+            UpdateTaskList();
+
+            TasksAdapter adapter = new TasksAdapter(this, gv.taskList);
 
             taskListView.Adapter = adapter;
+
+
         }
+
+        //protected override void OnResume()
+        //{
+        //    UpdateTaskList();
+
+        //    base.OnResume();
+        //}
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             switch (item.ItemId)
@@ -72,6 +57,22 @@ namespace UITesting
                     break;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        public void UpdateTaskList()
+        {
+            for (int i = gv.taskList.Count - 1; i >= 0; i--)
+            {
+                gv.taskList[i].Progress = gv.Steps;
+                if (gv.taskList[i].Completed == true)
+                {
+                    gv.Score += gv.taskList[i].Points;
+                    gv.taskList.RemoveAt(i);
+                }
+            }
+            TasksAdapter adapter = new TasksAdapter(this, gv.taskList);
+
+            taskListView.Adapter = adapter;
         }
     }
 }

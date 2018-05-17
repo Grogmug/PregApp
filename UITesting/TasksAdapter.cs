@@ -39,18 +39,17 @@ namespace UITesting
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
             var view = convertView ?? inflate.Inflate(
                 Resource.Layout.TaskListItem, parent, false);
             var title= view.FindViewById<TextView>(Resource.Id.titleText);
             var disc = view.FindViewById<TextView>(Resource.Id.discText);
+            var points = view.FindViewById<TextView>(Resource.Id.pointText);
             var progressBar = view.FindViewById<ProgressBar>(Resource.Id.taskProgressBar);
             title.Text = taskList[position].Title;
             disc.Text = taskList[position].Discribtion;
-            progressBar.Progress = 50;
-            progressBar.Max = 100;
-
-
+            points.Text = taskList[position].Points.ToString();
+            progressBar.Max = taskList[position].MaxAmount;
+            progressBar.Progress = taskList[position].Progress;
             return view;
         }
     }

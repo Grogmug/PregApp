@@ -90,14 +90,14 @@ namespace UITesting
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f08000c
-			public const int ChangeUsernameText = 2131230732;
-			
 			// aapt resource value: 0x7f08000d
-			public const int SaveSettings = 2131230733;
+			public const int ChangeUsernameText = 2131230733;
 			
-			// aapt resource value: 0x7f080012
-			public const int Settings_button = 2131230738;
+			// aapt resource value: 0x7f08000e
+			public const int SaveSettings = 2131230734;
+			
+			// aapt resource value: 0x7f080014
+			public const int Settings_button = 2131230740;
 			
 			// aapt resource value: 0x7f080001
 			public const int adviceListView = 2131230721;
@@ -108,44 +108,50 @@ namespace UITesting
 			// aapt resource value: 0x7f080002
 			public const int adviceTitleText = 2131230722;
 			
-			// aapt resource value: 0x7f08000a
-			public const int adviseButton = 2131230730;
-			
-			// aapt resource value: 0x7f08000f
-			public const int discText = 2131230735;
-			
-			// aapt resource value: 0x7f080009
-			public const int foodButton = 2131230729;
-			
-			// aapt resource value: 0x7f080005
-			public const int imageView1 = 2131230725;
-			
-			// aapt resource value: 0x7f080006
-			public const int kmText = 2131230726;
-			
-			// aapt resource value: 0x7f080008
-			public const int runButton = 2131230728;
-			
-			// aapt resource value: 0x7f080007
-			public const int stepsText = 2131230727;
+			// aapt resource value: 0x7f08000b
+			public const int adviseButton = 2131230731;
 			
 			// aapt resource value: 0x7f080011
-			public const int taskListView = 2131230737;
+			public const int discText = 2131230737;
+			
+			// aapt resource value: 0x7f08000a
+			public const int foodButton = 2131230730;
+			
+			// aapt resource value: 0x7f080006
+			public const int imageView1 = 2131230726;
+			
+			// aapt resource value: 0x7f080007
+			public const int kmText = 2131230727;
 			
 			// aapt resource value: 0x7f080010
-			public const int taskProgressBar = 2131230736;
+			public const int pointText = 2131230736;
 			
-			// aapt resource value: 0x7f08000b
-			public const int textView1 = 2131230731;
+			// aapt resource value: 0x7f080009
+			public const int runButton = 2131230729;
 			
-			// aapt resource value: 0x7f08000e
-			public const int titleText = 2131230734;
+			// aapt resource value: 0x7f080004
+			public const int scoreText = 2131230724;
+			
+			// aapt resource value: 0x7f080008
+			public const int stepsText = 2131230728;
+			
+			// aapt resource value: 0x7f080013
+			public const int taskListView = 2131230739;
+			
+			// aapt resource value: 0x7f080012
+			public const int taskProgressBar = 2131230738;
+			
+			// aapt resource value: 0x7f08000c
+			public const int textView1 = 2131230732;
+			
+			// aapt resource value: 0x7f08000f
+			public const int titleText = 2131230735;
 			
 			// aapt resource value: 0x7f080000
 			public const int toolbar = 2131230720;
 			
-			// aapt resource value: 0x7f080004
-			public const int usernameText = 2131230724;
+			// aapt resource value: 0x7f080005
+			public const int usernameText = 2131230725;
 			
 			static Id()
 			{

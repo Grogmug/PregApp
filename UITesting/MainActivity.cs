@@ -5,6 +5,7 @@ using System;
 using Android.Content;
 using Android.Views;
 using Android.Preferences;
+using UITesting.Models;
 
 namespace UITesting
 {
@@ -15,6 +16,7 @@ namespace UITesting
         ImageButton runButton;
         ImageButton adviseButton;
         TextView usernameText;
+        TextView scoreText;
         TextView steps;
         TextView km;
         protected override void OnCreate(Bundle savedInstanceState)
@@ -47,6 +49,9 @@ namespace UITesting
             usernameText = FindViewById<TextView>(Resource.Id.usernameText);
             usernameText.Text = prefs.GetString("username", "username");
 
+            //score
+            scoreText = FindViewById<TextView>(Resource.Id.scoreText);
+
             //Steps
             steps = FindViewById<TextView>(Resource.Id.stepsText);
             km = FindViewById<TextView>(Resource.Id.kmText);
@@ -58,25 +63,19 @@ namespace UITesting
         {
             base.OnResume();
             usernameText.Text = prefs.GetString("username", "username");
+            scoreText.Text = GlobalVariables.Instance.Score.ToString();
         }
 
         private void AddSteps(object sender, EventArgs e)
         {
-            int stepCount = 0;
-
-            if (steps.Text.ToLower() != "steps")
-            {
-                stepCount = int.Parse(steps.Text);
-            }
-            
-            stepCount += 525;
-            steps.Text = stepCount.ToString();
+            GlobalVariables.Instance.Steps += 525;
+            steps.Text = GlobalVariables.Instance.Steps + " steps";
             UpdateStats();
         }
 
         private void UpdateStats()
         { 
-            km.Text = (string.Format("{0:0.00}", double.Parse(steps.Text) / 1200.0)) + " km";
+            km.Text = string.Format("{0:0.00} km", GlobalVariables.Instance.Steps / 1312.0);
         }
 
 

@@ -16,13 +16,17 @@ namespace UITesting.Models
     {
         public string Title { get; set; }
         public string Discribtion { get; set; }
-        public bool Completed { get; set; }
+        public bool Completed { get { return Progress >= MaxAmount; } }
+        public int MaxAmount { get; set; }
+        public int Progress { get; set; }
+        public int Points { get; set; }
 
-        public Task(string title, string disc)
+        public Task(string title, string disc, int maxAmount, int points)
         {
             Title = title;
             Discribtion = disc;
-            Completed = false;
+            MaxAmount = maxAmount;
+            Points = points;
         }
 
         public override string ToString()
