@@ -5,14 +5,19 @@ using System;
 using Android.Content;
 using Android.Views;
 using Android.Preferences;
+using Android.Hardware;
 using UITesting.Models;
+using Android.Content.PM;
+using Android.Runtime;
 
 namespace UITesting
 {
-    [Activity(Label = "UITesting", MainLauncher = true, Icon = "@mipmap/icon")]
-    public class MainActivity : Activity
+    [Activity(Label = "UITesting", MainLauncher = true, Icon = "@mipmap/icon", ScreenOrientation = ScreenOrientation.Portrait )]
+    public class MainActivity : Activity, ISensorEventListener
     {
         ISharedPreferences prefs;
+        SensorManager sensorManager;
+        Sensor sensor;
         ImageButton runButton;
         ImageButton adviseButton;
         TextView usernameText;
@@ -53,6 +58,8 @@ namespace UITesting
             scoreText = FindViewById<TextView>(Resource.Id.scoreText);
 
             //Steps
+            sensorManager = (SensorManager)GetSystemService(Context.SensorService);
+            sensor = sensorManager.GetDefaultSensor(SensorType.StepCounter);
             steps = FindViewById<TextView>(Resource.Id.stepsText);
             km = FindViewById<TextView>(Resource.Id.kmText);
 
@@ -64,6 +71,7 @@ namespace UITesting
             base.OnResume();
             usernameText.Text = prefs.GetString("username", "username");
             scoreText.Text = GlobalVariables.Instance.Score.ToString();
+            sensorManager.RegisterListener(this, sensor, SensorDelay.Ui);
         }
 
         private void AddSteps(object sender, EventArgs e)
@@ -74,7 +82,8 @@ namespace UITesting
         }
 
         private void UpdateStats()
-        { 
+        {
+            steps.Text = GlobalVariables.Instance.Steps.ToString();
             km.Text = string.Format("{0:0.00} km", GlobalVariables.Instance.Steps / 1312.0);
         }
 
@@ -102,6 +111,16 @@ namespace UITesting
             return base.OnOptionsItemSelected(item);
         }
 
+        public void OnAccuracyChanged(Sensor sensor, [GeneratedEnum] SensorStatus accuracy)
+        {
+            
+        }
+
+        public void OnSensorChanged(SensorEvent e)
+        {
+            GlobalVariables.Instance.Steps = (int)e.Values[0];
+            UpdateStats();
+        }
     }
 }
 
