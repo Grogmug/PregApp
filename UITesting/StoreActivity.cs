@@ -13,16 +13,18 @@ using UITesting.Models;
 
 namespace UITesting
 {
-    [Activity(Label = "TaskActivity")]
-    public class TaskActivity : Activity
+    [Activity(Label = "StoreActivity")]
+    public class StoreActivity : Activity
     {
         GlobalVariables gv;
-        ListView taskListView;
+        TextView score;
+        ListView storeListView;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.Tasks);
+            SetContentView(Resource.Layout.Store);
+
             // Toolbar
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
             SetActionBar(toolbar);
@@ -31,22 +33,20 @@ namespace UITesting
 
             gv = GlobalVariables.Instance;
 
-            taskListView = FindViewById<ListView>(Resource.Id.taskListView);
+            score = FindViewById<TextView>(Resource.Id.storeScoreText);
+            storeListView = FindViewById<ListView>(Resource.Id.storeListView);
 
-            UpdateTaskList();
+            Updatestats();
 
-            TasksAdapter adapter = new TasksAdapter(this, gv.taskList);
-
-            taskListView.Adapter = adapter;
-
+            StoreAdapter adapter = new StoreAdapter(this, gv.storeItemList);
+            storeListView.Adapter = adapter;
 
         }
-
         protected override void OnResume()
         {
-            UpdateTaskList();
-
             base.OnResume();
+            Updatestats();
+
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
@@ -59,12 +59,9 @@ namespace UITesting
             return base.OnOptionsItemSelected(item);
         }
 
-        public void UpdateTaskList()
+        public void Updatestats()
         {
-            
-            TasksAdapter adapter = new TasksAdapter(this, gv.taskList);
-
-            taskListView.Adapter = adapter;
+            score.Text = gv.Score.ToString() + " points";
         }
     }
 }

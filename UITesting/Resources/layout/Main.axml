@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:text="Score"
                 android:layout_weight="1"
-                android:id="@+id/scoreText"/>
+                android:id="@+id/scoreText" />
             <TextView
                 android:id="@+id/usernameText"
                 android:layout_width="wrap_content"
@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
-            android:src="@drawable/newborn"
-            android:id="@+id/imageView1" />
+            android:src="@drawable/pixel_baby"
+            android:id="@+id/babyImage" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -84,8 +84,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
             <ImageButton
-                android:id="@+id/foodButton"
-                android:src="@drawable/ic_kitchen"
+                android:id="@+id/storeButton"
+                android:src="@drawable/ic_shopping_cart_black_24dp"
                 android:background="@drawable/button_food_background"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

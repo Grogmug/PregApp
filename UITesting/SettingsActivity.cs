@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.Preferences;
+using UITesting.Models;
 
 namespace UITesting
 {
@@ -20,12 +21,17 @@ namespace UITesting
         ISharedPreferencesEditor editor;
         EditText changeUsernameText;
         Button apply;
+        ListView settingsListView;
+        GlobalVariables gv;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.Settings);
 
+            gv = GlobalVariables.Instance;
+            settingsListView = FindViewById<ListView>(Resource.Id.SettingsOwnedItemsListView);
             prefs = PreferenceManager.GetDefaultSharedPreferences(this);
             editor = prefs.Edit();
 
@@ -38,6 +44,11 @@ namespace UITesting
             apply = FindViewById<Button>(Resource.Id.SaveSettings);
 
             apply.Click += ApplyChanges;
+
+
+
+            SettingsAdapter adapter = new SettingsAdapter(this, gv.storeItemList.FindAll(x => x.Purchased == true));
+            settingsListView.Adapter = adapter;
         }
 
         private void ApplyChanges(object sender, EventArgs e)
@@ -65,5 +76,6 @@ namespace UITesting
             }
             return base.OnOptionsItemSelected(item);
         }
+
     }
 }

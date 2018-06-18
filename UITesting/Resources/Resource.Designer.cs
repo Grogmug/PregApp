@@ -75,7 +75,19 @@ namespace UITesting
 			public const int ic_settings_black_24dp = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int newborn = 2130837514;
+			public const int ic_shopping_cart_black_24dp = 2130837514;
+			
+			// aapt resource value: 0x7f02000b
+			public const int Pixel_baby = 2130837515;
+			
+			// aapt resource value: 0x7f02000c
+			public const int Pixel_baby_red_hat = 2130837516;
+			
+			// aapt resource value: 0x7f02000d
+			public const int Pixel_baby_sunglasses = 2130837517;
+			
+			// aapt resource value: 0x7f02000e
+			public const int Pixel_baby_yellow_cap = 2130837518;
 			
 			static Drawable()
 			{
@@ -90,14 +102,26 @@ namespace UITesting
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f08000d
-			public const int ChangeUsernameText = 2131230733;
-			
 			// aapt resource value: 0x7f08000e
-			public const int SaveSettings = 2131230734;
+			public const int ChangeUsernameText = 2131230734;
 			
-			// aapt resource value: 0x7f080014
-			public const int Settings_button = 2131230740;
+			// aapt resource value: 0x7f08000f
+			public const int SaveSettings = 2131230735;
+			
+			// aapt resource value: 0x7f080013
+			public const int SettingsItemButton = 2131230739;
+			
+			// aapt resource value: 0x7f080012
+			public const int SettingsItemImage = 2131230738;
+			
+			// aapt resource value: 0x7f080011
+			public const int SettingsItemTitle = 2131230737;
+			
+			// aapt resource value: 0x7f080010
+			public const int SettingsOwnedItemsListView = 2131230736;
+			
+			// aapt resource value: 0x7f08001f
+			public const int Settings_button = 2131230751;
 			
 			// aapt resource value: 0x7f080001
 			public const int adviceListView = 2131230721;
@@ -111,20 +135,20 @@ namespace UITesting
 			// aapt resource value: 0x7f08000b
 			public const int adviseButton = 2131230731;
 			
-			// aapt resource value: 0x7f080011
-			public const int discText = 2131230737;
-			
-			// aapt resource value: 0x7f08000a
-			public const int foodButton = 2131230730;
-			
 			// aapt resource value: 0x7f080006
-			public const int imageView1 = 2131230726;
+			public const int babyImage = 2131230726;
+			
+			// aapt resource value: 0x7f08001c
+			public const int discText = 2131230748;
+			
+			// aapt resource value: 0x7f08000d
+			public const int imageView1 = 2131230733;
 			
 			// aapt resource value: 0x7f080007
 			public const int kmText = 2131230727;
 			
-			// aapt resource value: 0x7f080010
-			public const int pointText = 2131230736;
+			// aapt resource value: 0x7f08001b
+			public const int pointText = 2131230747;
 			
 			// aapt resource value: 0x7f080009
 			public const int runButton = 2131230729;
@@ -135,17 +159,38 @@ namespace UITesting
 			// aapt resource value: 0x7f080008
 			public const int stepsText = 2131230728;
 			
-			// aapt resource value: 0x7f080013
-			public const int taskListView = 2131230739;
+			// aapt resource value: 0x7f08000a
+			public const int storeButton = 2131230730;
 			
-			// aapt resource value: 0x7f080012
-			public const int taskProgressBar = 2131230738;
+			// aapt resource value: 0x7f080019
+			public const int storeItemButton = 2131230745;
+			
+			// aapt resource value: 0x7f080017
+			public const int storeItemImage = 2131230743;
+			
+			// aapt resource value: 0x7f080018
+			public const int storeItemPriceText = 2131230744;
+			
+			// aapt resource value: 0x7f080016
+			public const int storeItemTitleText = 2131230742;
+			
+			// aapt resource value: 0x7f080015
+			public const int storeListView = 2131230741;
+			
+			// aapt resource value: 0x7f080014
+			public const int storeScoreText = 2131230740;
+			
+			// aapt resource value: 0x7f08001e
+			public const int taskListView = 2131230750;
+			
+			// aapt resource value: 0x7f08001d
+			public const int taskProgressBar = 2131230749;
 			
 			// aapt resource value: 0x7f08000c
 			public const int textView1 = 2131230732;
 			
-			// aapt resource value: 0x7f08000f
-			public const int titleText = 2131230735;
+			// aapt resource value: 0x7f08001a
+			public const int titleText = 2131230746;
 			
 			// aapt resource value: 0x7f080000
 			public const int toolbar = 2131230720;
@@ -182,13 +227,22 @@ namespace UITesting
 			public const int Settings = 2130968580;
 			
 			// aapt resource value: 0x7f040005
-			public const int TaskListItem = 2130968581;
+			public const int SettingsListItem = 2130968581;
 			
 			// aapt resource value: 0x7f040006
-			public const int Tasks = 2130968582;
+			public const int Store = 2130968582;
 			
 			// aapt resource value: 0x7f040007
-			public const int toolbar = 2130968583;
+			public const int StoreListItem = 2130968583;
+			
+			// aapt resource value: 0x7f040008
+			public const int TaskListItem = 2130968584;
+			
+			// aapt resource value: 0x7f040009
+			public const int Tasks = 2130968585;
+			
+			// aapt resource value: 0x7f04000a
+			public const int toolbar = 2130968586;
 			
 			static Layout()
 			{

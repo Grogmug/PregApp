@@ -13,13 +13,14 @@ using Android.Runtime;
 namespace UITesting
 {
     [Activity(Label = "UITesting", MainLauncher = true, Icon = "@mipmap/icon", ScreenOrientation = ScreenOrientation.Portrait )]
-    public class MainActivity : Activity, ISensorEventListener
+    public class MainActivity : Activity
     {
         ISharedPreferences prefs;
-        SensorManager sensorManager;
-        Sensor sensor;
+        GlobalVariables gv;
+        ImageView babyImage;
         ImageButton runButton;
         ImageButton adviseButton;
+        ImageButton storeButton;
         TextView usernameText;
         TextView scoreText;
         TextView steps;
@@ -38,12 +39,18 @@ namespace UITesting
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
+            //baby picture
+            UpdateBabyImage();
+           
+
             //4 Menu buttons
             runButton = FindViewById<ImageButton>(Resource.Id.runButton);
             adviseButton = FindViewById<ImageButton>(Resource.Id.adviseButton);
+            storeButton = FindViewById<ImageButton>(Resource.Id.storeButton);
 
             runButton.Click += OpenRunMenu;
             adviseButton.Click += OpenAdviseMenu;
+            storeButton.Click += OpenStoreMenu;
 
             //ToolBar
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
@@ -57,21 +64,24 @@ namespace UITesting
             //score
             scoreText = FindViewById<TextView>(Resource.Id.scoreText);
 
-            //Steps
-            sensorManager = (SensorManager)GetSystemService(Context.SensorService);
-            sensor = sensorManager.GetDefaultSensor(SensorType.StepCounter);
+            //steps
             steps = FindViewById<TextView>(Resource.Id.stepsText);
             km = FindViewById<TextView>(Resource.Id.kmText);
 
             steps.Click += AddSteps;
+
+            //Start service
+            Intent backgroundIntent = new Intent(this, typeof(BackgroundService));
+            StartService(backgroundIntent);
+
         }
 
         protected override void OnResume()
         {
             base.OnResume();
+            UpdateBabyImage();
             usernameText.Text = prefs.GetString("username", "username");
-            scoreText.Text = GlobalVariables.Instance.Score.ToString();
-            sensorManager.RegisterListener(this, sensor, SensorDelay.Ui);
+            UpdateStats();
         }
 
         private void AddSteps(object sender, EventArgs e)
@@ -85,6 +95,7 @@ namespace UITesting
         {
             steps.Text = GlobalVariables.Instance.Steps.ToString();
             km.Text = string.Format("{0:0.00} km", GlobalVariables.Instance.Steps / 1312.0);
+            scoreText.Text = GlobalVariables.Instance.Score.ToString();
         }
 
 
@@ -99,6 +110,12 @@ namespace UITesting
             var runActivity = new Intent(this, typeof(TaskActivity));
             this.StartActivity(runActivity);
         }
+
+        private void OpenStoreMenu(object sender, EventArgs e)
+        {
+            var storeActivity = new Intent(this, typeof(StoreActivity));
+            this.StartActivity(storeActivity);
+        }
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.TopMenu , menu);
@@ -111,15 +128,14 @@ namespace UITesting
             return base.OnOptionsItemSelected(item);
         }
 
-        public void OnAccuracyChanged(Sensor sensor, [GeneratedEnum] SensorStatus accuracy)
+        public void UpdateBabyImage()
         {
-            
-        }
-
-        public void OnSensorChanged(SensorEvent e)
-        {
-            GlobalVariables.Instance.Steps = (int)e.Values[0];
-            UpdateStats();
+            gv = GlobalVariables.Instance;
+            babyImage = FindViewById<ImageView>(Resource.Id.babyImage);
+            if (gv.PictureId != 0)
+            {
+                babyImage.SetImageResource(gv.PictureId);
+            }
         }
     }
 }
